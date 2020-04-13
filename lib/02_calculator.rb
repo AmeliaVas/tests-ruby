@@ -14,12 +14,53 @@ def welcome
 		addition
 	elsif ope == 2
 		subtract
+		puts "How many numbers do you want to subtract ?"
+		print "> "
+		choice = gets.chomp.to_i
+		puts "Please enter the numbers you want to subtract. Separate them by the 'enter key'."
+		order = 1
+		my_array = []
+		choice.times do
+			print "N° #{order} > "
+			n = gets.chomp.to_i
+			my_array << n
+			order = order + 1
+		end
+		puts "#{my_array.join(' - ')} = #{subtract (my_array)}"
 	elsif ope == 3
 		multiply
+		puts "How many numbers do you want to multiply ?"
+		print "> "
+		choice = gets.chomp.to_i
+		puts "Please enter the numbers you want to multiply. Separate them by the 'enter key'."
+		order = 1
+		my_array = []
+		choice.times do
+			print "N° #{order} > "
+			n = gets.chomp.to_i
+			my_array << n
+			order = order + 1
+		end
+		puts "#{my_array.join(' x ')} = #{multiply (my_array)}"
 	elsif ope == 4
 		power
+		puts "How many numbers do you want to split ?"
+		print "> "
+		choice = gets.chomp.to_i
+		puts "Please enter the numbers you want to split. Separate them by the 'enter key'."
+		order = 1
+		my_array = []
+		choice.times do
+			print "N° #{order} > "
+			n = gets.chomp.to_i
+			my_array << n
+			order = order + 1
+		end
+		puts "#{my_array.join(' : ')} = #{power (my_array)}"
 	elsif ope == 5
-		factorial
+		print "Choose a number : "
+		numb = gets.chomp.to_i
+		puts "The factorial of #{numb} is #{factorial (num)}."
 	elsif ope == 9
 		puts "Canceled."
 	else
@@ -44,98 +85,58 @@ end
 
 def addition
 	puts "How many numbers do you want to sum ?"
-		print "> "
-		$num = gets.chomp.to_i
-		if $num == 2
-			add
-		elsif $num >= 3
-			sum
-		else
-			puts "You can't choose a number less than 2."
-			addition
-		end
-end
-
-def add
-	puts "Please enter the numbers you want to sum. Separate them by the 'enter key'."
-	print "N° 1 > "
-	n1 = gets.chomp.to_i
-	print "N° 2 > "
-	n2 = gets.chomp.to_i
-	puts "#{n1} + #{n2} = #{n1 + n2}"
-end
-
-def sum
-	puts "Please enter the numbers you want to sum. Separate them by the 'enter key'."
-	order = 1
-	my_array = []
-	$num.times do
-		print "N° #{order} > "
-		n = gets.chomp.to_i
-		my_array << n
-		order = order + 1
-	end
-	puts "#{my_array.join(' + ')} = #{my_array.sum}"
-end
-
-def subtract
-	puts "How many numbers do you want to subtract ?"
 	print "> "
-	choice = gets.chomp.to_i
-	puts "Please enter the numbers you want to subtract. Separate them by the 'enter key'."
-	order = 1
-	my_array = []
-	choice.times do
-		print "N° #{order} > "
-		n = gets.chomp.to_i
-		my_array << n
-		order = order + 1
+	num = gets.chomp.to_i
+	if num == 2
+		puts "Please enter the numbers you want to sum. Separate them by the 'enter key'."
+		print "N° 1 > "
+		a = gets.chomp.to_i
+		print "N° 2 > "
+		b = gets.chomp.to_i
+		add (a, b)
+		puts "#{a} + #{b} = #{a + b}"
+	elsif num >= 3
+		puts "Please enter the numbers you want to sum. Separate them by the 'enter key'."
+		order = 1
+		my_array = []
+			$num.times do
+			print "N° #{order} > "
+			n = gets.chomp.to_i
+			my_array << n
+			order = order + 1
+			end
+		sum (my_array)
+		puts "#{my_array.join(' + ')} = #{my_array.sum}"
+	else
+		puts "You can't choose a number less than 2."
+		addition
 	end
-	puts "#{my_array.join(' - ')} = #{(my_array.drop 1).inject(my_array[0]){|x, y| x-y}}"
 end
 
-def multiply
-	puts "How many numbers do you want to multiply ?"
-	print "> "
-	choice = gets.chomp.to_i
-	puts "Please enter the numbers you want to multiply. Separate them by the 'enter key'."
-	order = 1
-	my_array = []
-	choice.times do
-		print "N° #{order} > "
-		n = gets.chomp.to_i
-		my_array << n
-		order = order + 1
-	end
-	puts "#{my_array.join(' x ')} = #{(my_array.drop 1).inject(my_array[0]){|x, y| x*y}}"
+def add (a, b)
+	a+b
 end
 
-def power
-	puts "How many numbers do you want to split ?"
-	print "> "
-	choice = gets.chomp.to_i
-	puts "Please enter the numbers you want to split. Separate them by the 'enter key'."
-	order = 1
-	my_array = []
-	choice.times do
-		print "N° #{order} > "
-		n = gets.chomp.to_i
-		my_array << n
-		order = order + 1
-	end
-	puts "#{my_array.join(' : ')} = #{(my_array.drop 1).inject(my_array[0]){|x, y| x/y}}"
+def sum (array)
+	array.sum
 end
 
-def factorial
-	print "Choose a number : "
-	numb = gets.chomp.to_i
+def subtract (array)
+	(array.drop 1).inject(array[0]){|x, y| x-y}
+end
+
+def multiply (array)
+	(array.drop 1).inject(array[0]){|x, y| x*y}
+end
+
+def power (array)
+	(array.drop 1).inject(array[0]){|x, y| x/y}
+end
+
+def factorial (numb)
 	if numb <= 1
 		res = 1
 	elsif numb >= 2
 		res = (1..numb).inject(:*)
-	else
-		puts "Error, we expect an entire positive number."
-		factorial
 	end
-	puts "The factorial of #{numb} is #{res}."
 end

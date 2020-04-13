@@ -1,10 +1,14 @@
+def welcome
+	puts "What's your name ?"
+	print "> "
+	name = gets.chomp
+	greet
+end
+
 def hello
 	puts "Hello!"
 end
 
-def greet(name)
-	puts "What's your name ?"
-	print "> "
-	thename = gets.chomp
-	puts "Hello, #{thename}!"
+def greet(name)	
+	puts "Hello, #{name}!"
 end
