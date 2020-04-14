@@ -1,5 +1,9 @@
-def time_string
+def Welcome
 	print "Enter seconds to convert : "
 	t = gets.chomp.to_i
-	puts Time.at(t).utc.strftime("%H:%M:%S")
+	puts time_string(t)
+end
+
+def time_string(t)
+	return Time.at(t).utc.strftime("%H:%M:%S")
 end
