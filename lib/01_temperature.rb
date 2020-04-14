@@ -12,13 +12,12 @@ def welcome
 	sprintf("%.1d", temp)
 
 	if type == 1
-		ctof
-		puts "#{temp}°F = #{toc}°C"
+		puts "#{temp}°F = #{ctof(temp)}°C"
 		puts "Do you want to convert another temperature ?"
 		print "Enter 'yes' or 'no' : "
 		choice = gets.chomp
 		if choice == "yes"
-			temperature_conversion_functions
+			welcome
 		elsif choice == "no"
 			puts "Thank you to use our temperature conversion program."
 			puts "See you soon."
@@ -28,13 +27,12 @@ def welcome
 			puts "See you soon."
 		end
 	elsif type == 2
-		ftoc
-		puts "#{temp}°C = #{tof}°F"
+		puts "#{temp}°C = #{ftoc(temp)}°F"
 		puts "Do you want to convert another temperature ?"
 		print "Enter 'yes' or 'no' : "
 		choice = gets.chomp
 		if choice == "yes"
-			temperature_conversion_functions
+			welcome
 		elsif choice == "no"
 			puts "Thank you to use our temperature conversion program."
 			puts "See you soon."
@@ -48,16 +46,24 @@ def welcome
 		puts "See you soon."
 	else
 		puts "We don't understand your choice, please enter the number '1', '2' or '3' depending of the action you want to do."
-		temperature_conversion_functions
+		welcome
 	end
 end
 
 def ftoc (temp)
-	toc = (temp - 32) * 5/9
-	sprintf('%0.1f', toc)
+	a = sprintf('%0.1f', (temp - 32) * 5/9)
+	if a.end_with?(".0") == true
+		return a.to_i
+	else
+		return a.to_f
+	end
 end
 
 def ctof (temp)
-	tof = temp * 9/5 + 32
-	sprintf('%0.1f', tof)
+	b = sprintf('%0.1f', temp * 9/5 + 32)
+	if b.end_with?(".0") == true
+		return b.to_i
+	else
+		return b.to_f
+	end
 end

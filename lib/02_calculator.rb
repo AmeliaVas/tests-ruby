@@ -114,29 +114,29 @@ def addition
 end
 
 def add (a, b)
-	a+b
+	return a+b
 end
 
 def sum (array)
-	array.sum
+	return array.sum
 end
 
 def subtract (array)
-	(array.drop 1).inject(array[0]){|x, y| x-y}
+	return (array.drop 1).inject(array[0]){|x, y| x-y}
 end
 
 def multiply (array)
-	(array.drop 1).inject(array[0]){|x, y| x*y}
+	return (array.drop 1).inject(array[0]){|x, y| x*y}
 end
 
 def power (array)
-	(array.drop 1).inject(array[0]){|x, y| x/y}
+	return (array.drop 1).inject(array[0]){|x, y| x/y}
 end
 
 def factorial (numb)
 	if numb <= 1
-		res = 1
+		return res = 1
 	elsif numb >= 2
-		res = (1..numb).inject(:*)
+		return res = (1..numb).inject(:*)
 	end
 end
